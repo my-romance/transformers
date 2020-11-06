@@ -343,7 +343,7 @@ class PreTrainedModel(nn.Module, ModuleUtilsMixin):
         logger.info("Model weights saved in {}".format(output_model_file))
 
     @classmethod
-    def from_pretrained(cls, pretrained_model_name_or_path, *model_args, **kwargs):
+    def from_pretrained(cls, pretrained_model_name_or_path, ncate1_info, ocr_info, bracket_info, attr_info, *model_args, **kwargs):
         r"""Instantiate a pretrained pytorch model from a pre-trained model configuration.
 
         The model is set in evaluation mode by default using ``model.eval()`` (Dropout modules are deactivated)
@@ -509,7 +509,7 @@ class PreTrainedModel(nn.Module, ModuleUtilsMixin):
             resolved_archive_file = None
 
         # Instantiate model.
-        model = cls(config, *model_args, **model_kwargs)
+        model = cls(config, ncate1_info, ocr_info, bracket_info, attr_info, *model_args, **model_kwargs)
 
         if state_dict is None and not from_tf:
             try:
